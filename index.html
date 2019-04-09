@@ -26,7 +26,68 @@
 </head>
 
 <body>
+	<script type="text/javascript">
 
+		dhtmlxEvent(window, "load", function () {
+
+			const window = new dhtmlXWindows();
+			const mainWindow = window.createWindow({
+				id: "mainWindow",
+				width: 600,
+				height: 300,
+				center: true,
+				caption: "My form",
+			});
+
+			mainWindow.button("close").hide();
+			mainWindow.button("park").hide();
+			mainWindow.button("minmax").hide();
+			mainWindow.keepInViewport(true);
+
+			const mainRibbon = mainWindow.attachRibbon({
+				json: "data/ribbon/data.json",
+			});
+
+			const headColorPicker = new dhtmlXColorPicker({
+				color: "#0000ff",
+				input: "inp1",
+				custom_colors: true,
+				hide: true
+			});
+
+			const bodyColorPicker = new dhtmlXColorPicker({
+				color: "#0000ff",
+				input: "inp1",
+				custom_colors: true,
+				hide: true
+			});
+
+			// get window header
+			const nodWindow = mainWindow.cell.parentElement;
+			const windowHeader = nodWindow.getElementsByClassName("dhxwin_hdr")[0];
+			// change window header color
+			headColorPicker.attachEvent("onChange", (color) => {
+				windowHeader.style.backgroundColor = color;
+			});
+
+			// get window body
+			const bodyWindow = nodWindow.getElementsByClassName("dhx_cell_cont_wins")[0];
+			// change window body color
+			bodyColorPicker.attachEvent("onChange", (color) => {
+				bodyWindow.style.backgroundColor = color;
+			});
+
+			mainRibbon.attachEvent("onClick", function (id) {
+				if (id === "colorPickerHeadBtn") {
+					headColorPicker.show();
+				}
+				if (id === "colorPickerBodyBtn") {
+					bodyColorPicker.show();
+				}
+			});
+
+		});
+	</script>
 
 </body>
 
