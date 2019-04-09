@@ -1,0 +1,139 @@
+{
+	"tabs": [
+		{
+			"id": "tab_1",
+			"text": "tab 1",
+			"active": true,
+			"items": [
+				{
+					"type": "block",
+					"text": "Block 1",
+					"mode": "cols",
+					"list": [
+						{
+							"type": "button",
+							"text": "Opens",
+							"isbig": true,
+							"img": "data/imgs/ribbon/open.gif"
+						},
+						{
+							"type": "button",
+							"text": "new",
+							"img": "data/imgs/ribbon/new.gif"
+						},
+						{
+							"type": "button",
+							"text": "cut",
+							"img": "data/imgs/ribbon/cut.gif"
+						}
+					]
+				},
+				{
+					"type": "block",
+					"text": "Block 2",
+					"text_pos": "top",
+					"list": [
+						{
+							"type": "button",
+							"text": "copy",
+							"img": "data/imgs/ribbon/copy.gif"
+						},
+						{
+							"type": "button",
+							"text": "print",
+							"img": "data/imgs/ribbon/print.gif"
+						},
+						{
+							"type": "button",
+							"text": "paste",
+							"img": "data/imgs/ribbon/paste.gif",
+							"isbig": true
+						}
+					]
+				},
+				{
+					"id": "block_3",
+					"type": "block",
+					"list": [
+						{
+							"type": "button",
+							"text": "save",
+							"isbig": true,
+							"img": "data/imgs/ribbon/save.gif"
+						}
+					]
+				},
+				{
+					"id": "block_4",
+					"type": "block",
+					"list": [
+						{
+							"type": "button",
+							"text": "change header color",
+							"id": "colorPickerHeadBtn"
+						},
+						{
+							"type": "button",
+							"text": "change body color",
+							"id": "colorPickerBodyBtn"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "tab_2",
+			"text": "tab 2",
+			"items": [
+				{
+					"type": "block",
+					"text": "Block 1",
+					"mode": "rows",
+					"list": [
+						{
+							"type": "button",
+							"text": "copy",
+							"img": "data/imgs/ribbon/copy.gif"
+						},
+						{
+							"type": "button",
+							"text": "cut",
+							"img": "data/imgs/ribbon/cut.gif"
+						},
+						{
+							"type": "button",
+							"text": "new",
+							"img": "data/imgs/ribbon/new.gif"
+						},
+						{
+							"type": "newLevel"
+						},
+						{
+							"type": "button",
+							"text": "open",
+							"img": "data/imgs/ribbon/open.gif"
+						},
+						{
+							"type": "button",
+							"text": "paste",
+							"img": "data/imgs/ribbon/paste.gif"
+						},
+						{
+							"type": "newLevel"
+						},
+						{
+							"type": "button",
+							"text": "print",
+							"img": "data/imgs/ribbon/print.gif"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "tab_3",
+			"text": "tab 3",
+			"items": []
+		}
+	]
+}
