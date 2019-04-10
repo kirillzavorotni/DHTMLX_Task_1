@@ -44,48 +44,70 @@
 			mainWindow.button("minmax").hide();
 			mainWindow.keepInViewport(true);
 
+			// get window nods (header, body)
+			const nodWindow = mainWindow.cell.parentElement;
+			const windowHeader = nodWindow.querySelector(".dhxwin_hdr");
+			const bodyWindow = nodWindow.querySelector(".dhx_cell_cont_wins");
+
+			// default color value
+			let windowHeaderColor = "#3399cc";
+			let windowBodyColor = "#ffffff";
+
 			const mainRibbon = mainWindow.attachRibbon({
 				json: "data/ribbon/data.json",
-			});
+				onload: () => {
+					const colorPickerPopup = new dhtmlXPopup({ ribbon: mainRibbon, id: ["colorPickerHeadBtn", "colorPickerBodyBtn"] });
 
-			const headColorPicker = new dhtmlXColorPicker({
-				color: "#0000ff",
-				input: "inp1",
-				custom_colors: true,
-				hide: true
-			});
+					colorPickerPopup.attachEvent("onShow", (id) => {
+						const windowColorPicker = colorPickerPopup.attachColorPicker({
+							custom_colors: true,
+						});
 
-			const bodyColorPicker = new dhtmlXColorPicker({
-				color: "#0000ff",
-				input: "inp1",
-				custom_colors: true,
-				hide: true
-			});
+						// set last color
+						if (id === "colorPickerHeadBtn") {
+							windowColorPicker.setColor(windowHeaderColor);
+						}
+						if (id === "colorPickerBodyBtn") {
+							windowColorPicker.setColor(windowBodyColor);
+						}
 
-			// get window header
-			const nodWindow = mainWindow.cell.parentElement;
-			const windowHeader = nodWindow.getElementsByClassName("dhxwin_hdr")[0];
-			// change window header color
-			headColorPicker.attachEvent("onChange", (color) => {
-				windowHeader.style.backgroundColor = color;
-			});
+						windowColorPicker.attachEvent("onChange", (color) => {
+							// preliminary color change
+							if (id === "colorPickerHeadBtn") {
+								windowHeader.style.backgroundColor = color;
+							}
+							if (id === "colorPickerBodyBtn") {
+								bodyWindow.style.backgroundColor = color;
+							}
 
-			// get window body
-			const bodyWindow = nodWindow.getElementsByClassName("dhx_cell_cont_wins")[0];
-			// change window body color
-			bodyColorPicker.attachEvent("onChange", (color) => {
-				bodyWindow.style.backgroundColor = color;
-			});
+						});
 
-			mainRibbon.attachEvent("onClick", function (id) {
-				if (id === "colorPickerHeadBtn") {
-					headColorPicker.show();
+						windowColorPicker.attachEvent("onSelect", (color) => {
+							// save color
+							if (id === "colorPickerHeadBtn") {
+								windowHeaderColor = color;
+							}
+							if (id === "colorPickerBodyBtn") {
+								windowBodyColor = color;
+							}
+
+							colorPickerPopup.hide();
+						});
+
+						windowColorPicker.attachEvent("onCancel", () => {
+							// reset color
+							if (id === "colorPickerHeadBtn") {
+								windowHeader.style.backgroundColor = windowHeaderColor;
+							}
+							if (id === "colorPickerBodyBtn") {
+								bodyWindow.style.backgroundColor = windowBodyColor;
+							}
+							colorPickerPopup.hide();
+						});
+
+					});
 				}
-				if (id === "colorPickerBodyBtn") {
-					bodyColorPicker.show();
-				}
 			});
-
 		});
 	</script>
 
